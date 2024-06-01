@@ -172,7 +172,7 @@
 			margin: 0 auto;
 			font-size: 12px;
 			display: flex;
-			transform: translateX(20px);
+			transform: translateX(40px);
 		}
 		.time {
 			font-size: 30px;
@@ -243,31 +243,34 @@
 		</div>
 	</body>
 	<script>
-	// 目标日期：2024年5月22日
-	const targetDate = new Date("2024-05-22T00:00:00").getTime();
+	function updateTime() {
+	    // 设置开始日期
+	    var startDate = new Date("May 22, 2024 00:00:00").getTime();
 	
-	// 更新计时器的函数
-	function updateTimer() {
-	  const currentDate = new Date().getTime();
-	  const timeDifference = targetDate - currentDate;
+	    // 获取当前日期
+	    var now = new Date().getTime();
 	
-	  // 计算剩余的天数、小时、分钟和秒数
-	  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-	  const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-	  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-	  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+	    // 计算时间差
+	    var timeDiff = now - startDate;
 	
-	  // 将时间显示在页面上
-	  document.getElementById("days").innerHTML = `${days}`;
-	  document.getElementById("hours").innerHTML = `${hours}`;
-	  document.getElementById("minutes").innerHTML = `${minutes}`;
-	  document.getElementById("seconds").innerHTML = `${seconds}`;
-	 }
+	    // 计算天数、小时数、分钟数和秒数
+	    var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+	    var hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	    var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+	    var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 	
-	// 每秒更新一次计时器
-	setInterval(updateTimer, 1000);
+	    // 显示时间
+	    
+	    document.getElementById("days").innerHTML = `${days}`;
+		document.getElementById("hours").innerHTML = `${hours}`;
+		document.getElementById("minutes").innerHTML = `${minutes}`;
+		document.getElementById("seconds").innerHTML = `${seconds}`;
+	}
 	
-	// 页面加载时先执行一次更新，避免初始延迟
-	updateTimer();
+	// 每秒更新一次时间
+	setInterval(updateTime, 1000);
+	
+	// 初次加载时更新时间
+	updateTime();
 	</script>
 </html>
